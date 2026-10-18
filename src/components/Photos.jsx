@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Pattern, Star8 } from './Ornaments'
 import Reveal, { SectionTitle } from './Reveal'
+import { upload } from '@vercel/blob/client'
 
 /** Shrink big phone photos before upload (faster on venue Wi-Fi). Falls back to original (e.g. HEIC). */
 async function compress(file, max = 2200, quality = 0.86) {
@@ -21,17 +22,19 @@ async function compress(file, max = 2200, quality = 0.86) {
   }
 }
 
-function send(files, name, onProgress) {
-  return new Promise((resolve, reject) => {
-    const fd = new FormData()
-    fd.append('name', name)
-    files.forEach((f) => fd.append('photos', f))
-    const x = new XMLHttpRequest()
-    x.open('POST', '/api/photos')
-    x.upload.onprogress = (e) => e.lengthComputable && onProgress(e.loaded / e.total)
-    x.onload = () => (x.status < 300 ? resolve() : reject(new Error(JSON.parse(x.responseText || '{}').error || 'Xatolik')))
-    x.onerror = () => reject(new Error("Internet bilan muammo. Qayta urinib ko'ring"))
-    x.send(fd)
+/** utf-8 safe base64url, used to keep the uploader's name in the file path */
+const b64url = (str) => btoa(unescape(encodeURIComponent(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+
+/** Upload one photo straight to private Blob storage */
+function send(file, name, onProgress) {
+  const ext = (file.name.match(/\.(\w+)$/)?.[1] || 'jpg').toLowerCase()
+  return upload(`photos/${Date.now()}__${b64url(name.slice(0, 60))}.${ext}`, file, {
+    access: 'private',
+    handleUploadUrl: '/api/upload',
+    contentType: file.type || 'image/jpeg',
+    onUploadProgress: (e) => onProgress(e.percentage / 100),
+  }).catch((e) => {
+    throw new Error(/network|fetch/i.test(e.message) ? "Internet bilan muammo. Qayta urinib ko'ring" : "Rasmni yuklab bo'lmadi")
   })
 }
 
@@ -63,11 +66,19 @@ export default function Photos() {
     setProgress(0)
     try {
       const files = await Promise.all(items.map((i) => compress(i.file)))
-      // send in small batches so one bad connection doesn't lose everything
-      for (let i = 0; i < files.length; i += 5) {
-        const batch = files.slice(i, i + 5)
-        await send(batch, name, (p) => setProgress((i + p * batch.length) / files.length))
+      // one by one, 3 at a time — a bad connection never loses the whole batch
+      const parts = files.map(() => 0)
+      const tick = () => setProgress(parts.reduce((a, b) => a + b, 0) / files.length)
+      let next = 0
+      const worker = async () => {
+        while (next < files.length) {
+          const i = next++
+          await send(files[i], name, (p) => ((parts[i] = p), tick()))
+          parts[i] = 1
+          tick()
+        }
       }
+      await Promise.all([worker(), worker(), worker()])
       items.forEach((i) => URL.revokeObjectURL(i.url))
       setDone(files.length)
       setItems([])

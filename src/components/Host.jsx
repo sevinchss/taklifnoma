@@ -94,7 +94,7 @@ export default function Host() {
 
   if (!token) return <Login onToken={setToken} />
 
-  const src = (id, dl) => `/api/host/photo/${id}?t=${token}${dl ? '&download=1' : ''}`
+  const src = (id, dl) => `/api/host/photo?id=${encodeURIComponent(id)}&t=${token}${dl ? '&download=1' : ''}`
   const photos = data?.photos || []
   const isPhone = typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches
 
@@ -104,7 +104,7 @@ export default function Host() {
     fetch(src(id))
       .then((r) => r.blob())
       .then((b) => {
-        cache.current.set(id, new File([b], `toy-${id}`, { type: b.type || 'image/jpeg' }))
+        cache.current.set(id, new File([b], `toy-${id.split('/').pop()}`, { type: b.type || 'image/jpeg' }))
         setLoaded((n) => n + 1)
       })
       .catch(() => cache.current.delete(id))
@@ -154,13 +154,13 @@ export default function Host() {
 
   const delPhoto = async (id) => {
     if (!confirm("Bu rasmni o'chirasizmi?")) return
-    await api(`/api/host/photo/${id}`, { method: 'DELETE' })
+    await api(`/api/host/photo?id=${encodeURIComponent(id)}`, { method: 'DELETE' })
     setOpen(null)
     load()
   }
   const delRsvp = async (id) => {
     if (!confirm("Bu javobni o'chirasizmi?")) return
-    await api(`/api/host/rsvp/${id}`, { method: 'DELETE' })
+    await api(`/api/host/rsvp?id=${encodeURIComponent(id)}`, { method: 'DELETE' })
     load()
   }
 
