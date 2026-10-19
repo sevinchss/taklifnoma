@@ -1,104 +1,127 @@
 @import "tailwindcss";
 
+/* Islomiy nikoh taklifnomasi: fil suyagi qog'oz, zumrad yashil, oltin, och pushti atirgullar */
 @theme {
-  --color-night: #0a1230;
-  --color-lapis: #142a6b;
-  --color-lapis-2: #1d3a8a;
-  --color-turq: #3cc7c0;
-  --color-turq-dark: #1f8f8f;
-  --color-pearl: #f8f3e8;
-  --color-mist: #efe6d3;
-  --color-gold: #b88a2e;
-  --color-gold-light: #ecc879;
-  --color-ink: #1b2340;
-  --font-serif: "Marcellus", Georgia, serif;
-  --font-script: "Alex Brush", cursive;
+  --color-emerald-ink: #1f5a35;
+  --color-emerald-deep: #183823;
+  --color-emerald-night: #122a1c;
+  --color-emerald-btn: #2f7344;
+  --color-emerald-btn2: #4e8c62;
+  --color-sage-btn: #6f9f80;
+  --color-sage-soft: #d7e4d3;
+  --color-sage-ink: #5a816c;
+  --color-gold: #c9a85a;
+  --color-gold-deep: #a58e44;
+  --color-gold-line: #d8c48a;
+  --color-gold-border: #e2d5b0;
+  --color-gold-ink: #887341;
+  --color-gold-muted: #a59979;
+  --color-ivory: #f6f3ea;
+  --color-ivory-1: #fbf8ef;
+  --color-ivory-mat: #ede8d5;
+  --color-ivory-card: #fffdf6;
+  --color-ivory-input: #fbf8f0;
+  --color-beige-band: #ece6d2;
+  --color-ink-label: #6d6057;
+  --color-ink-body: #70655d;
+  --color-ink-quote: #4f493c;
+  --color-ink-strong: #312d26;
+  --color-ink-muted: #c9c6bd;
+  --color-blush: #efb399;
+
+  /* eski nomlar — mezbon paneli (Host.jsx) uchun yangi ranglarga moslangan */
+  --color-night: #122a1c;
+  --color-lapis: #1f5a35;
+  --color-lapis-2: #2f7344;
+  --color-turq: #4e8c62;
+  --color-turq-dark: #2f7344;
+  --color-pearl: #f6f3ea;
+  --color-mist: #ede8d5;
+  --color-gold-light: #e6cf8e;
+  --color-ink: #312d26;
+
+  --font-script: "Great Vibes", "Alex Brush", cursive;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-italic: "Cormorant Garamond", Georgia, serif;
+  --font-caps: "Jost", "Outfit", system-ui, sans-serif;
+  --font-sans: "Outfit", "Jost", system-ui, sans-serif;
   --font-arabic: "Amiri", serif;
-  --font-sans: "Manrope", system-ui, sans-serif;
 }
 
 html {
+  scrollbar-gutter: stable;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
+  background: var(--color-ivory);
 }
 body {
-  background: var(--color-pearl);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
+  position: relative;
+  margin: 0;
+  background: var(--color-ivory);
+  color: var(--color-ink-strong);
+  font-family: var(--font-serif);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+img { max-width: 100%; }
 
+/* Bir ustunli telefon sahifasi */
+.page { max-width: 416px; margin: 0 auto; position: relative; overflow-x: clip; }
+.gutter { padding-left: 16px; padding-right: 16px; }
+
+/* ---------- ikki qavatli karta (kalendar, hadis, to'yxona, xarita, aloqa, "Hurmat bilan") ---------- */
+.mat {
+  position: relative;
+  padding: 8px;
+  border-radius: 30px;
+  border: 1px solid #e3dcc4;
+  background: linear-gradient(180deg, #f1eddd, #ebe6d2);
+  box-shadow: 0 12px 30px rgba(110, 95, 50, 0.1);
+}
+.card {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid var(--color-gold-border);
+  background: linear-gradient(180deg, #fffdf4, #fffffb);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+.card-dash { position: absolute; inset: 8px; border: 1px dashed #dccda0; border-radius: 16px; pointer-events: none; }
+
+/* ---------- tipografiya ---------- */
+.script { font-family: var(--font-script); font-weight: 400; color: var(--color-emerald-ink); line-height: 1.15; }
+.caps { font-family: var(--font-caps); font-weight: 500; text-transform: uppercase; letter-spacing: 0.28em; }
+.serif-caps { font-family: var(--font-serif); font-weight: 500; text-transform: uppercase; letter-spacing: 0.24em; }
+.oldnum { font-variant-numeric: oldstyle-nums; }
 .gold-text {
-  background: linear-gradient(100deg, #a57a24 0%, #f3d58f 35%, #c99a3e 55%, #fff0c2 75%, #b88a2e 100%);
-  background-size: 200% auto;
+  background: linear-gradient(100deg, #c4a152 0%, #e6cf8e 40%, #c4a152 60%, #f3e2ad 80%, #c4a152 100%);
+  background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: shimmer 6s linear infinite;
+  animation: shimmer 7s linear infinite;
 }
-@keyframes shimmer { to { background-position: 200% center; } }
+@keyframes shimmer { to { background-position: 220% center; } }
 
+/* ---------- umumiy animatsiyalar ---------- */
 .twinkle { animation: twinkle var(--d, 3s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
-@keyframes twinkle { 0%, 100% { opacity: 0.15; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1); } }
-
-.shooting { animation: shoot 7s ease-in infinite; animation-delay: var(--delay, 2s); }
-@keyframes shoot {
-  0%, 82% { transform: translate(0, 0) rotate(-30deg); opacity: 0; }
-  84% { opacity: 1; }
-  100% { transform: translate(-420px, 240px) rotate(-30deg); opacity: 0; }
-}
-
-.swing { transform-origin: top center; animation: swing 5s ease-in-out infinite; }
-@keyframes swing { 0%, 100% { transform: rotate(-2.5deg); } 50% { transform: rotate(2.5deg); } }
-
-.glow { animation: glow 3s ease-in-out infinite; }
-@keyframes glow { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
-
+@keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1); } }
 .float { animation: float 6s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 .spin-slow { animation: spin 60s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
 .eq span { animation: eq 0.9s ease-in-out infinite; transform-origin: bottom; }
 .eq span:nth-child(2) { animation-delay: 0.2s; }
 .eq span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes eq { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
-
-.paper {
-  background: linear-gradient(180deg, #fffdf8, #fbf6ea);
-  box-shadow: 0 1px 0 #fff inset, 0 30px 60px -30px rgba(20, 42, 107, 0.35), 0 0 0 1px rgba(184, 138, 46, 0.25);
-}
-.night-bg {
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(60, 199, 192, 0.18), transparent 55%),
-    radial-gradient(ellipse at 80% 100%, rgba(236, 200, 121, 0.12), transparent 50%),
-    linear-gradient(180deg, #070d24 0%, #0f1f52 60%, #18307a 100%);
-}
-
-/* ---------- doves ---------- */
-.dove .wing-l, .dove .wing-r { transform-box: view-box; animation: var(--flap, 0.5s) ease-in-out infinite alternate; }
-.dove .wing-l { transform-origin: 47px 32px; animation-name: flapL; }
-.dove .wing-r { transform-origin: 53px 32px; animation-name: flapR; }
-@keyframes flapL { from { transform: rotate(-38deg) scaleX(0.92); } to { transform: rotate(22deg) scaleX(1.04); } }
-@keyframes flapR { from { transform: rotate(38deg) scaleX(0.92); } to { transform: rotate(-22deg) scaleX(1.04); } }
-
-.fly { will-change: transform; animation: fly var(--dur, 20s) linear infinite; animation-delay: var(--delay, 0s); transform: translate3d(-15vw, 0, 0); }
-@keyframes fly { from { transform: translate3d(-15vw, 0, 0); } to { transform: translate3d(115vw, var(--rise, -20vh), 0); } }
-.bob { animation: bob 2.6s ease-in-out infinite; animation-delay: var(--delay, 0s); }
-@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
-
-/* rotating light rays */
-.rays {
-  background: repeating-conic-gradient(from 0deg, rgba(236, 200, 121, 0.16) 0deg 6deg, transparent 6deg 18deg);
-  mask-image: radial-gradient(circle, #000 0%, transparent 68%);
-  -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 68%);
-  animation: spin 80s linear infinite;
-}
-.ripple { animation: ripple 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
-@keyframes ripple { from { transform: scale(1); opacity: 0.6; } to { transform: scale(1.7); opacity: 0; } }
+.glow { animation: glow 3s ease-in-out infinite; }
+@keyframes glow { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .fly, .bob, .rays, .ripple, .twinkle, .shooting, .swing, .float, .spin-slow, .dove .wing-l, .dove .wing-r { animation: none !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* mezbon paneli (Host.jsx) kartalari */
+.paper {
+  background: linear-gradient(180deg, #fffdf4, #fffffb);
+  box-shadow: 0 1px 0 #fff inset, 0 24px 50px -30px rgba(31, 90, 53, 0.35), 0 0 0 1px rgba(201, 168, 90, 0.3);
 }

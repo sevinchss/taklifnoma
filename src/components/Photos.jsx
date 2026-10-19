@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Pattern, Star8 } from './Ornaments'
-import Reveal, { SectionTitle } from './Reveal'
+import { Reveal, Divider, Star8 } from './ui'
+import './sections/bottom.css'
 import { upload } from '@vercel/blob/client'
 
 /** Shrink big phone photos before upload (faster on venue Wi-Fi). Falls back to original (e.g. HEIC). */
@@ -92,93 +92,112 @@ export default function Photos() {
   const busy = progress !== null
 
   return (
-    <section id="rasmlar" className="relative overflow-hidden bg-mist/60 px-5 py-20">
-      <Pattern opacity={0.06} />
-      <SectionTitle eyebrow="To'y kuni uchun" title="To'y rasmlarini yuklang" />
-      <Reveal className="relative mx-auto max-w-lg">
-        <p className="mx-auto -mt-4 mb-8 max-w-sm text-center font-italic text-xl italic leading-relaxed text-ink/70">
+    <section id="rasmlar" className="relative scroll-mt-4 overflow-hidden px-5 pb-16 pt-12" style={{ background: 'linear-gradient(180deg,#F3F1EA,#EEEADC)' }}>
+      <Reveal className="text-center">
+        <Divider kind="moon" />
+        <p className="mt-3 font-caps text-[12px] font-semibold uppercase tracking-[0.3em] text-[#877341]" style={{ marginRight: '-0.3em' }}>To'y kuni uchun</p>
+        <h2 className="script mt-2 text-[40px] leading-[1.15]">To'y rasmlarini yuklang</h2>
+        <p className="mx-auto mt-3 max-w-[320px] font-serif text-[17px] italic leading-[1.55] text-[#6D6057]">
           To'yda kelin-kuyovni suratga oldingizmi? Shu yerga yuklang — rasmlar to'g'ri to'y egasiga boradi.
         </p>
+      </Reveal>
 
-        <div className="paper relative overflow-hidden rounded-[32px] p-5 sm:p-7">
-          <div className="mb-5 flex items-center gap-3 rounded-2xl bg-lapis/[0.06] px-4 py-3">
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-lapis text-gold-light">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
-            </span>
-            <p className="font-sans text-[12.5px] leading-snug text-lapis">
-              <b>Maxfiy.</b> Rasmlarni faqat to'y egasi ko'radi — boshqa mehmonlarga ko'rinmaydi.
-            </p>
-          </div>
+      <Reveal delay={0.1} y={18} className="mx-auto mt-7 max-w-[384px]">
+        <div className="mat">
+          <div className="card px-5 pb-6 pt-6">
+            <span className="card-dash" aria-hidden="true" />
+            <div className="relative">
+              <div className="mb-5 flex items-center gap-3 rounded-[14px] border border-dashed border-[#D4C49A] bg-[#F3EFE5] px-3.5 py-3">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[#E6CF8E]" style={{ background: 'linear-gradient(135deg,#2F7344,#1F5A35)' }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+                </span>
+                <p className="text-left font-sans text-[13px] leading-snug text-[#3F5E49]">
+                  <b className="font-semibold text-[#1F5A35]">Maxfiy.</b> Rasmlarni faqat to'y egasi ko'radi — boshqa mehmonlarga ko'rinmaydi.
+                </p>
+              </div>
 
-          <AnimatePresence mode="wait">
-            {done > 0 && !items.length ? (
-              <motion.div key="ok" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="py-8 text-center">
-                <div className="relative mx-auto grid h-20 w-20 place-items-center">
-                  <Star8 size={80} className="absolute text-gold spin-slow" fill="rgba(220,194,138,0.25)" />
-                  <span className="relative font-serif text-3xl font-semibold text-lapis">{done}</span>
-                </div>
-                <h3 className="mt-4 font-script text-4xl text-lapis">Rahmat!</h3>
-                <p className="mt-2 font-sans text-sm text-ink/60">{done} ta rasm to'y egasiga yuborildi.</p>
-                <button onClick={() => ref.current.click()} className="mt-6 rounded-full border border-lapis/30 px-6 py-2.5 font-sans text-sm font-semibold text-lapis hover:border-lapis">
-                  Yana yuklash
-                </button>
-              </motion.div>
-            ) : (
-              <motion.div key="up" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <button
-                  type="button"
-                  disabled={busy}
-                  onClick={() => ref.current.click()}
-                  onDragOver={(e) => (e.preventDefault(), setDrag(true))}
-                  onDragLeave={() => setDrag(false)}
-                  onDrop={(e) => (e.preventDefault(), setDrag(false), add(e.dataTransfer.files))}
-                  className={`group flex w-full flex-col items-center rounded-3xl border-2 border-dashed px-4 py-10 transition ${
-                    drag ? 'border-lapis bg-lapis/5' : 'border-gold/40 hover:border-gold hover:bg-white/60'
-                  }`}
-                >
-                  <motion.span whileHover={{ rotate: 8 }} className="grid h-16 w-16 place-items-center rounded-full bg-lapis text-gold-light shadow-lg shadow-lapis/30">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
-                  </motion.span>
-                  <span className="mt-4 font-serif text-2xl font-semibold text-lapis">Rasmlarni tanlang</span>
-                  <span className="mt-1 font-sans text-xs text-ink/50">Galereyadan yoki kameradan · 30 tagacha</span>
-                </button>
-
-                {items.length > 0 && (
-                  <>
-                    <div className="mt-5 grid grid-cols-4 gap-2 sm:grid-cols-5">
-                      {items.map((it, i) => (
-                        <motion.div key={it.url} layout initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="group relative aspect-square overflow-hidden rounded-xl bg-mist">
-                          <img src={it.url} alt="" className="h-full w-full object-cover" />
-                          {!busy && (
-                            <button onClick={() => remove(i)} className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-full bg-black/55 text-white" aria-label="O'chirish">
-                              <svg width="12" height="12" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M6 6l12 12M18 6L6 18" /></svg>
-                            </button>
-                          )}
-                        </motion.div>
-                      ))}
+              <AnimatePresence mode="wait">
+                {done > 0 && !items.length ? (
+                  <motion.div key="ok" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }} className="py-6 text-center">
+                    <div className="relative mx-auto grid h-20 w-20 place-items-center">
+                      <Star8 size={80} className="spin-slow absolute inset-0" color="rgba(201,168,90,.28)" />
+                      <span className="relative font-serif text-[32px] font-semibold text-[#1F5A35] [font-variant-numeric:lining-nums]">{done}</span>
                     </div>
-                    <input
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Ismingiz (ixtiyoriy)"
-                      maxLength={80}
-                      className="mt-5 w-full rounded-2xl border border-gold/30 bg-white/70 px-4 py-3.5 font-sans text-[15px] outline-none focus:border-gold focus:ring-4 focus:ring-gold/10"
-                    />
+                    <h3 className="script mt-4 text-[38px]">Rahmat!</h3>
+                    <p className="mt-1 font-serif text-[17px] italic text-[#6D6057]">{done} ta rasm to'y egasiga yuborildi.</p>
+                    <motion.button whileTap={{ scale: 0.97 }} onClick={() => ref.current.click()} className="copy-pill mt-6 inline-flex h-11 items-center rounded-full px-7 font-sans text-[15px] font-semibold text-[#2B5A3C]">
+                      Yana yuklash
+                    </motion.button>
+                  </motion.div>
+                ) : (
+                  <motion.div key="up" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
                     <button
-                      onClick={upload}
+                      type="button"
                       disabled={busy}
-                      className="relative mt-4 w-full overflow-hidden rounded-2xl bg-lapis py-4 font-sans text-sm font-bold tracking-wider text-pearl shadow-lg shadow-lapis/25 disabled:cursor-wait"
+                      onClick={() => ref.current.click()}
+                      onDragOver={(e) => (e.preventDefault(), setDrag(true))}
+                      onDragLeave={() => setDrag(false)}
+                      onDrop={(e) => (e.preventDefault(), setDrag(false), add(e.dataTransfer.files))}
+                      className={`group flex w-full flex-col items-center rounded-[18px] border-[1.5px] border-dashed px-4 py-9 transition-colors ${
+                        drag ? 'border-[#2F7344] bg-[#EEF4EC]' : 'border-[#D4C49A] bg-[#FBF8F0] active:bg-[#F7F3E6]'
+                      }`}
                     >
-                      {busy && <span className="absolute inset-y-0 left-0 bg-gold/40 transition-all" style={{ width: `${progress * 100}%` }} />}
-                      <span className="relative">{busy ? `Yuklanmoqda... ${Math.round(progress * 100)}%` : `${items.length} ta rasmni yuborish`}</span>
+                      <span
+                        className="grid h-16 w-16 place-items-center rounded-full text-[#E6CF8E] transition-transform duration-300 group-hover:scale-105"
+                        style={{ background: 'linear-gradient(135deg,#2F7344,#1F5A35)', boxShadow: '0 0 0 4px #FFFDF6, 0 0 0 5px #D8C48A, 0 10px 24px rgba(31,90,53,.28)' }}
+                      >
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
+                      </span>
+                      <span className="mt-4 font-serif text-[22px] font-semibold text-[#1F5A35]">Rasmlarni tanlang</span>
+                      <span className="mt-1 font-sans text-[12.5px] text-[#8A8178]">Galereyadan yoki kameradan · 30 tagacha</span>
                     </button>
-                  </>
+
+                    {items.length > 0 && (
+                      <>
+                        <div className="mt-5 grid grid-cols-4 gap-2">
+                          {items.map((it, i) => (
+                            <motion.div
+                              key={it.url}
+                              layout
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              className="relative aspect-square overflow-hidden rounded-[10px] bg-[#EFE9DA] p-[3px] shadow-[0_0_0_1px_#E3D6AE]"
+                            >
+                              <img src={it.url} alt="" className="h-full w-full rounded-[7px] object-cover" />
+                              {!busy && (
+                                <button onClick={() => remove(i)} className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-full bg-[#122A1C]/70 text-white" aria-label="O'chirish">
+                                  <svg width="11" height="11" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                                </button>
+                              )}
+                            </motion.div>
+                          ))}
+                        </div>
+                        <input
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="Ismingiz (ixtiyoriy)"
+                          aria-label="Ismingiz (ixtiyoriy)"
+                          maxLength={80}
+                          className="field mt-5"
+                        />
+                        <motion.button
+                          whileTap={{ scale: 0.98 }}
+                          onClick={upload}
+                          disabled={busy}
+                          className="btn-sage ready relative mt-5 h-[52px] w-full overflow-hidden rounded-full font-serif text-[19px] font-medium disabled:cursor-wait"
+                        >
+                          {busy && <span className="absolute inset-y-0 left-0 bg-[#E6CF8E]/35 transition-[width] duration-300" style={{ width: `${progress * 100}%` }} />}
+                          <span className="relative">{busy ? `Yuklanmoqda... ${Math.round(progress * 100)}%` : `${items.length} ta rasmni yuborish`}</span>
+                        </motion.button>
+                      </>
+                    )}
+                  </motion.div>
                 )}
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {err && <p className="mt-3 text-center font-sans text-sm text-red-700">{err}</p>}
-          <input ref={ref} type="file" accept="image/*" multiple hidden onChange={(e) => (add(e.target.files), (e.target.value = ''))} />
+              </AnimatePresence>
+              {err && <p className="mt-3 rounded-[12px] border border-dashed border-[#D9A99A] bg-[#FBF1EC] px-3.5 py-2.5 text-center font-sans text-[14px] text-[#9A4B3A]" role="alert">{err}</p>}
+              <input ref={ref} type="file" accept="image/*" multiple hidden onChange={(e) => (add(e.target.files), (e.target.value = ''))} />
+            </div>
+          </div>
         </div>
       </Reveal>
     </section>

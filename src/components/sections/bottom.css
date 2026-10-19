@@ -1,0 +1,149 @@
+/* Pastki bo'limlar: to'yxona, xarita, ma'lumot, to'yona, stol, xotira lavhalari, rasm yuklash, yakun */
+
+/* ---------- to'yxona: gul burchaklari (1536x1024 RGBA, faqat kichraytiriladi) ---------- */
+.venue-corner {
+  width: min(47%, 172px);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  object-position: left bottom;
+  z-index: 0;
+  user-select: none;
+}
+.venue-corner.is-flip { transform: scaleX(-1); }
+
+/* ---------- xarita ---------- */
+.map-dots {
+  background-color: #f7f5ee;
+  background-image: radial-gradient(circle, #d9d4c4 1px, transparent 1.4px);
+  background-size: 14px 14px;
+}
+.map-pin-bob { animation: mapbob 1.6s ease-in-out infinite; }
+@keyframes mapbob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.map-pin-shadow { animation: mapshadow 1.6s ease-in-out infinite; }
+@keyframes mapshadow { 0%, 100% { transform: scaleX(1); opacity: 0.35; } 50% { transform: scaleX(0.6); opacity: 0.18; } }
+
+.pill-emerald {
+  background: linear-gradient(90deg, #2f7344, #4e8c62);
+  box-shadow: 0 0 0 3px rgba(216, 196, 138, 0.6), 0 6px 16px rgba(31, 90, 53, 0.25);
+  color: #f5f1e3;
+}
+.pill-emerald:active { filter: brightness(1.05); }
+
+/* ---------- aloqa qatorlari ---------- */
+.contact-row { transition: background-color 0.18s ease; }
+.contact-row:active { background-color: #f7f3e6; }
+.contact-row:active .contact-chev { color: #2f3a33; transform: translateX(2px); }
+.contact-chev { transition: color 0.18s ease, transform 0.18s ease; }
+.icon-sage {
+  background: #d7e4d3;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  color: #2f6b45;
+}
+
+/* ---------- to'yona: zumrad karta ---------- */
+.bank-card {
+  position: relative;
+  border-radius: 16px;
+  border: 3px solid #f5edd3;
+  box-shadow: 0 0 0 1px #d8c48a, 0 18px 40px rgba(24, 56, 35, 0.35);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.1), transparent 55%),
+    linear-gradient(135deg, #2e5e3c 0%, #22492c 55%, #183823 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+.bank-lattice {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image:
+    repeating-linear-gradient(45deg, #e0cf95 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(-45deg, #e0cf95 0 1px, transparent 1px 22px);
+  pointer-events: none;
+}
+.bank-sheen {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 246, 214, 0.16) 45%, rgba(255, 246, 214, 0.28) 50%, rgba(255, 246, 214, 0.16) 55%, transparent 100%);
+  transform: translateX(-160%) skewX(-12deg);
+  animation: sheen 6s ease-in-out 1.2s infinite;
+  pointer-events: none;
+}
+@keyframes sheen {
+  0% { transform: translateX(-160%) skewX(-12deg); }
+  28%, 100% { transform: translateX(330%) skewX(-12deg); }
+}
+.foil {
+  background: linear-gradient(100deg, #c9ae6a 0%, #f3e2ad 30%, #d9c07f 50%, #fff0c4 68%, #c9ae6a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+.chip {
+  background: linear-gradient(135deg, #e3c77a, #c9a85a 45%, #a58e44);
+  box-shadow: inset 0 0 0 1px rgba(90, 70, 20, 0.35);
+}
+.spin-40 { animation: spin40 40s linear infinite; }
+@keyframes spin40 { to { transform: rotate(360deg); } }
+
+.copy-pill {
+  background: #fffdf6;
+  border: 1.5px solid #e3d6ae;
+  box-shadow: 0 4px 12px rgba(120, 100, 50, 0.1);
+  transition: border-color 0.25s ease;
+}
+.copy-pill.is-done { border-color: #2f7344; }
+
+/* ---------- stol ---------- */
+.table-glow {
+  background: radial-gradient(closest-side, rgba(255, 244, 205, 0.95), rgba(255, 244, 205, 0) 100%);
+  animation: glow 3.2s ease-in-out infinite;
+}
+
+/* ---------- polaroid ---------- */
+.polaroid {
+  background: #fdf9ef;
+  padding: 9px 9px 32px;
+  box-shadow: 0 12px 26px rgba(60, 50, 30, 0.2), 0 2px 6px rgba(60, 50, 30, 0.08), 0 0 0 1px #ece3cf;
+}
+.polaroid img { aspect-ratio: 2 / 3; object-fit: cover; width: 100%; display: block; background: #efe9da; }
+.bracket { position: absolute; width: 12px; height: 12px; border-color: #c9b074; border-style: solid; border-width: 0; }
+
+/* ---------- rasm yuklash (Photos.jsx) ---------- */
+.field {
+  width: 100%;
+  height: 50px;
+  border-radius: 12px;
+  background: #fbf8f0;
+  border: 1px solid #e2d8bf;
+  padding: 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 17px;
+  color: #3a3328;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.field::placeholder { font-style: italic; color: #9c9286; font-weight: 400; }
+.field:focus { border-color: #c9a85a; background: #fffdf8; box-shadow: 0 0 0 4px rgba(201, 168, 90, 0.14); }
+
+.btn-sage {
+  background: linear-gradient(90deg, #6f9f80, #5d9273);
+  box-shadow: 0 0 0 2px rgba(216, 196, 138, 0.55), 0 8px 18px rgba(47, 115, 68, 0.25);
+  color: #f6f2e6;
+}
+.btn-sage.ready { background: linear-gradient(90deg, #2f7344, #4e8c62); }
+
+/* ---------- yakun ---------- */
+.footer-arch {
+  border: 1px solid rgba(201, 168, 90, 0.5);
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+}

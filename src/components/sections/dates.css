@@ -1,0 +1,121 @@
+/* ================= Kalendar (§6) ================= */
+/* Gul burchaklar: kartaning yuqori chetini o'raydi, oy sarlavhasi va jadvalga tegmaydi */
+.cal-floral { position: absolute; left: 0; right: 0; top: 0; height: 168px; overflow: hidden; border-radius: 21px 21px 0 0; pointer-events: none; }
+.cal-floral .corner { position: absolute; top: 0; width: 52%; transform-origin: 0 0; animation: cal-sway 9s ease-in-out infinite; }
+.cal-floral .corner.l { left: 0; }
+.cal-floral .corner.r { right: 0; transform-origin: 100% 0; animation-name: cal-sway-r; animation-delay: -4.5s; }
+.cal-floral .corner.r > .mirror { transform: scaleX(-1); }
+.cal-floral.is-img { height: 162px; }
+.cal-floral.is-img .corner { width: 43%; top: -2px; }
+.cal-floral.is-img .corner.l { left: -2px; }
+.cal-floral.is-img .corner.r { right: -2px; }
+.cal-fimg { display: block; width: 100%; height: auto; user-select: none; -webkit-user-drag: none; }
+@keyframes cal-sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(0.8deg); } }
+@keyframes cal-sway-r { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-0.8deg); } }
+
+.cal-head { font-family: var(--font-serif); font-weight: 600; font-size: 20px; letter-spacing: 0.18em; color: #1f5a35; }
+.cal-wk { font-family: var(--font-caps); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 47px); grid-auto-rows: 44px; justify-content: center; }
+.cal-day { position: relative; display: grid; place-items: center; font-family: var(--font-serif); font-weight: 500; font-size: 17px; color: #3a3328; font-variant-numeric: oldstyle-nums; }
+.cal-day.out { color: #c9c6bd; }
+.cal-day .n { position: relative; z-index: 2; line-height: 1; }
+
+/* pufakcha: oltin to'lqin */
+.cal-bub {
+  position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 999px;
+  background: radial-gradient(circle at 42% 36%, #f7f0dc, #ecdfbb 70%, #e4d3a6);
+  opacity: 0; transform: scale(0.6); z-index: 1; will-change: transform, opacity;
+}
+.cal-bub::after {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit;
+  box-shadow: 0 0 0 2px #d3be84, 0 0 14px rgba(201, 168, 90, 0.45);
+  opacity: 0;
+}
+.cal-run .cal-bub { animation: cal-bub 0.72s cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: calc(var(--i) * 52ms + 60ms); }
+.cal-run .cal-bub::after { animation: cal-ring 0.5s ease-out both; animation-delay: calc(var(--i) * 52ms + 60ms); }
+@keyframes cal-bub {
+  0% { opacity: 0; transform: scale(0.6); }
+  40% { opacity: 1; transform: scale(1.08); }
+  62% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.5; transform: scale(0.94); }
+}
+@keyframes cal-ring { 0% { opacity: 0; } 25% { opacity: 1; } 65% { opacity: 0.8; } 100% { opacity: 0; } }
+.cal-static .cal-bub { opacity: 0.5; transform: scale(0.94); }
+
+/* tanlangan kun — zumrad */
+.cal-sel { position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; z-index: 1; opacity: 0; transform: scale(1.35); }
+.cal-sel .disc {
+  position: absolute; inset: 0; border-radius: 999px;
+  background: radial-gradient(circle at 40% 35%, #3d8a5a, #1f5a35 62%, #174a2b);
+  box-shadow: 0 0 0 2px #fffdf4, 0 0 0 3.5px #d8c48a, 0 0 0 9px rgba(216, 196, 138, 0.22), 0 8px 18px rgba(29, 82, 51, 0.38);
+}
+.cal-sel .halo { position: absolute; inset: -6px; border-radius: 999px; border: 1px solid #d8c48a; opacity: 0; }
+.cal-sel .spk { position: absolute; right: -7px; top: -8px; opacity: 0; transform: scale(0.2) rotate(-40deg); }
+.cal-num-w { position: absolute; inset: 0; display: grid; place-items: center; z-index: 3; color: #fffdf4; font-weight: 600; opacity: 0; line-height: 1; }
+.cal-run .cal-sel, .cal-static .cal-sel { animation: cal-sel 0.52s cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: var(--sel-d); }
+.cal-run .sel-n, .cal-static .sel-n { animation: cal-fadeout 0.2s ease-out both; animation-delay: var(--sel-d); }
+@keyframes cal-fadeout { to { opacity: 0; } }
+.cal-run .cal-num-w, .cal-static .cal-num-w { animation: cal-fade 0.3s ease-out both; animation-delay: var(--sel-d); }
+.cal-run .cal-sel .halo { animation: cal-halo 2.6s ease-out infinite; animation-delay: calc(var(--sel-d) + 0.3s); }
+.cal-run .cal-sel .spk { animation: cal-spk 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both, cal-tw 2.4s ease-in-out infinite; animation-delay: calc(var(--sel-d) + 0.25s), calc(var(--sel-d) + 0.9s); }
+.cal-static .cal-sel .spk { opacity: 1; transform: none; }
+@keyframes cal-sel { 0% { opacity: 0; transform: scale(1.35); } 30% { opacity: 1; } 100% { opacity: 1; transform: scale(1); } }
+@keyframes cal-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cal-halo { 0% { opacity: 0.9; transform: scale(0.9); } 70%, 100% { opacity: 0; transform: scale(1.55); } }
+@keyframes cal-spk { from { opacity: 0; transform: scale(0.2) rotate(-40deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
+@keyframes cal-tw { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(0.7) rotate(25deg); } }
+
+.cal-time { font-family: var(--font-serif); font-weight: 600; font-size: 46px; line-height: 1; color: #1f5a35; font-variant-numeric: lining-nums; letter-spacing: 0.01em; }
+
+/* ================= Taymer (§7) ================= */
+.cd-sky {
+  background:
+    radial-gradient(60% 34% at 50% 100%, rgba(226, 184, 103, 0.34), transparent 70%),
+    radial-gradient(45% 30% at 50% 6%, rgba(201, 168, 90, 0.16), transparent 70%),
+    radial-gradient(80% 60% at 50% 45%, #163a26 0%, transparent 70%),
+    linear-gradient(180deg, #08130d 0%, #0e2218 38%, #12281b 62%, #0b1a12 100%);
+}
+/* haqiqiy osmon rasmi: to'liq fon, bulutlar plitkalarni o'rab turadi */
+.cd-has-sky { aspect-ratio: 2 / 3; min-height: 560px; background: #07120c; }
+.cd-sky-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; user-select: none; }
+.cd-sky-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 14, 9, 0.28) 0%, rgba(5, 14, 9, 0) 18%, rgba(5, 14, 9, 0) 70%, rgba(5, 14, 9, 0.18) 100%); }
+.cd-mosque-img { position: relative; display: block; width: 100%; height: auto; margin-bottom: -3.72%; user-select: none; }
+.cd-ground { position: absolute; inset: auto 0 0 0; height: 10px; background: linear-gradient(180deg, transparent, #050c08); }
+.cd-cloud { position: absolute; border-radius: 999px; filter: blur(18px); will-change: transform; }
+.cd-cloud.a { animation: cd-drift 26s ease-in-out infinite; }
+.cd-cloud.b { animation: cd-drift 32s ease-in-out infinite reverse; }
+@keyframes cd-drift { 0%, 100% { transform: translateX(-8px); } 50% { transform: translateX(8px); } }
+
+.cd-star { position: absolute; animation: cd-tw var(--d, 3s) ease-in-out infinite; animation-delay: var(--dl, 0s); will-change: opacity, transform; }
+@keyframes cd-tw { 0%, 100% { opacity: 0.25; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1); } }
+.cd-flare { animation: cd-flare 4s ease-in-out infinite; }
+@keyframes cd-flare { 0%, 100% { opacity: 0.75; transform: scale(0.92) rotate(0deg); } 50% { opacity: 1; transform: scale(1.06) rotate(6deg); } }
+
+.cd-title { font-family: var(--font-serif); font-weight: 500; font-size: 17px; letter-spacing: 0.3em; color: #ead6a0; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55), 0 0 18px rgba(201, 168, 90, 0.25); }
+
+.cd-tile {
+  position: relative; overflow: hidden; height: 92px; border-radius: 12px;
+  background: linear-gradient(180deg, rgba(232, 236, 214, 0.26), rgba(150, 160, 120, 0.12));
+  -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px);
+  border: 1.5px solid rgba(196, 178, 112, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), inset 0 0 0 3px rgba(255, 255, 255, 0.03), 0 10px 24px rgba(0, 0, 0, 0.35);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.cd-has-sky .cd-tile {
+  background: linear-gradient(180deg, rgba(236, 232, 206, 0.2), rgba(18, 40, 27, 0.42));
+  border-color: rgba(214, 190, 120, 0.82);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 210, 0.34), inset 0 0 0 3px rgba(255, 255, 255, 0.03), 0 0 16px rgba(214, 184, 104, 0.16), 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+.cd-tile::before { content: ""; position: absolute; inset: 4px; border-radius: 8px; border: 1px solid rgba(232, 214, 160, 0.16); pointer-events: none; }
+.cd-tile::after {
+  content: ""; position: absolute; top: -20%; bottom: -20%; left: 0; width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 236, 180, 0.28), transparent);
+  transform: translateX(-160%) skewX(-12deg); animation: cd-sheen 8s ease-in-out infinite; animation-delay: var(--sd, 0s);
+}
+@keyframes cd-sheen { 0%, 78% { transform: translateX(-160%) skewX(-12deg); } 92%, 100% { transform: translateX(330%) skewX(-12deg); } }
+.cd-num { position: relative; height: 40px; overflow: hidden; font-family: var(--font-serif); font-weight: 600; font-size: 34px; line-height: 40px; color: #f7f2e2; font-variant-numeric: oldstyle-nums tabular-nums; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); }
+.cd-lab { margin-top: 4px; font-family: var(--font-caps); font-weight: 500; font-size: 9.5px; letter-spacing: 0.18em; color: #e8e1cc; padding-left: 0.18em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cal-floral .corner, .cd-cloud, .cd-star, .cd-flare, .cd-tile::after, .cal-sel .halo { animation: none !important; }
+}

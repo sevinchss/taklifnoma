@@ -1,0 +1,110 @@
+/* Top.jsx bo'limlari: ismlar, oyat, hadis, tungi masjid, "Hurmat bilan" */
+
+/* SVG ichidagi miltillovchi yulduzlar (scale markazdan) */
+.tp-tw {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle var(--d, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* hilol atrofidagi nur (faqat opacity) */
+.tp-glow { animation: tp-glow 4s ease-in-out infinite; }
+@keyframes tp-glow { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+/* bulutlarning sekin suzishi */
+.tp-drift { animation: tp-drift 40s ease-in-out infinite alternate; }
+.tp-drift-r { animation: tp-drift 52s ease-in-out infinite alternate-reverse; }
+@keyframes tp-drift { from { transform: translateX(-8px); } to { transform: translateX(8px); } }
+
+/* oyat bo'limida suzib tushayotgan gulbarglar */
+.tp-petals { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.tp-petal {
+  position: absolute;
+  top: -20px;
+  width: 9px;
+  height: 7px;
+  border-radius: 80% 10% 80% 10%;
+  background: linear-gradient(135deg, #f6cdbd, #e7a993);
+  opacity: 0;
+  animation: tp-fall var(--dur, 15s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes tp-fall {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.38; }
+  85% { opacity: 0.32; }
+  100% { transform: translate3d(var(--dx, 40px), 560px, 0) rotate(300deg); opacity: 0; }
+}
+
+/* Bismillah — oltin gradient matn */
+.tp-bismillah {
+  font-family: var(--font-arabic);
+  background: linear-gradient(100deg, #b8964a 0%, #e6cf8e 45%, #b8964a 65%, #dcc07c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* tasbeh munchoqlari yaltirashi */
+.tp-shine { animation: tp-shine 6s ease-in-out infinite; }
+@keyframes tp-shine { 0%, 100% { opacity: 0; } 50% { opacity: 0.8; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-petal { display: none; }
+}
+
+/* ---------- Ismlar: oltin hilol-yulduz ajratgich (gold-divider.webp, 2172x724) ---------- */
+/* rasmning shaffof hoshiyasi kesiladi; 260px -> 3x DPR da ham manbadan kichik */
+.tp-gdiv { width: 260px; height: 40px; overflow: hidden; }
+.tp-gdiv img { display: block; width: 260px; max-width: none; height: auto; margin-top: -23px; }
+
+/* ---------- Tungi masjid sahnasi (haqiqiy qatlamlar) ---------- */
+/* 390px kenglikda ~840px balandlik; barcha rasmlar 1.0 dan katta qilinmaydi (manba 1536px >= 3x) */
+.tp-night { aspect-ratio: 390 / 840; background: #f6f3ea; isolation: isolate; }
+.tp-night img { display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
+
+/* ravoq ochig'i ortidagi to'q osmon (parallaks paytida bo'shliq ko'rinmasin) */
+.tp-night::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 40%;
+  background: #141a33;
+}
+
+/* 1. osmon + hilol: ravoq ochig'iga moslab o'ngga/pastga surilgan */
+.tp-n-sky { position: absolute; left: 9%; width: 110%; top: 6%; aspect-ratio: 2 / 3; will-change: transform; }
+.tp-n-sky img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 2. bulutlar — osmon va masjid tutashgan joyda, sekin suzadi */
+.tp-n-clouds { position: absolute; left: -15%; width: 130%; top: 16%; aspect-ratio: 2 / 1; will-change: transform; opacity: 0.92; }
+.tp-n-clouds img { width: 100%; height: 100%; object-fit: contain; }
+.tp-n-clouds .tp-drift { animation-duration: 26s; }
+
+/* 3. masjid: tepasi osmonga eriydi, pasti fil suyagi rangga o'tadi */
+.tp-n-mosque {
+  position: absolute; left: 0; width: 100%; top: 28.5%; aspect-ratio: 2 / 3;
+  -webkit-mask-image: linear-gradient(180deg, transparent 2%, #000 27%);
+  mask-image: linear-gradient(180deg, transparent 2%, #000 27%);
+}
+.tp-n-mosque img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 4. mehrob-ravoq ramka; ustunlarning pasti sahnaga singib ketadi */
+.tp-n-frame {
+  position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 2 / 3; z-index: 2; pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent 99%);
+  mask-image: linear-gradient(180deg, #000 78%, transparent 99%);
+}
+.tp-n-frame img { width: 100%; height: 100%; }
+
+.tp-n-fade-top { position: absolute; inset: 0 0 auto; height: 10px; z-index: 3; background: linear-gradient(180deg, #f6f3ea, rgba(246, 243, 234, 0)); pointer-events: none; }
+.tp-n-fade-bottom { position: absolute; inset: auto 0 0; height: 16%; z-index: 3; background: linear-gradient(180deg, rgba(246, 243, 234, 0), #f6f3ea 85%); pointer-events: none; }
+
+/* ---------- "Hurmat bilan": gulchambar va oltin rozetka ---------- */
+.tp-garland {
+  position: absolute; left: -10px; top: -34px; width: calc(100% + 20px); max-width: none; height: auto;
+  z-index: 1; pointer-events: none; user-select: none;
+}
+.tp-rosette { display: block; width: 46px; height: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-n-clouds .tp-drift { animation: none; }
+}
