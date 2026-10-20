@@ -56,7 +56,7 @@ export function Names() {
       </div>
 
       <motion.div className="relative" variants={stagger(0.15)} initial="hide" whileInView="show" viewport={VIEW}>
-        <motion.p variants={up} dir="rtl" lang="ar" className="tp-bismillah text-[25px] leading-[1.6]">
+        <motion.p variants={up} dir="rtl" lang="ar" className="tp-bismillah text-[27px] leading-[1.6]">
           بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
         </motion.p>
         <motion.div variants={up} className="mt-2 flex items-center justify-center gap-2" aria-hidden="true">
@@ -65,29 +65,29 @@ export function Names() {
           <Sparkle size={7} color="#D2B672" />
         </motion.div>
 
-        <motion.p variants={up} className="mt-5 font-serif text-[19px] italic leading-none text-gold-muted">
+        <motion.p variants={up} className="mt-5 font-serif text-[21px] italic leading-none text-[#857858]">
           Assalomu alaykum
         </motion.p>
-        <motion.p variants={up} className="mt-[10px] font-serif text-[14px] font-medium uppercase tracking-[0.26em] text-ink-label">
+        <motion.p variants={up} className="mt-[10px] font-serif text-[15px] font-medium uppercase tracking-[0.2em] text-ink-label">
           Aziz mehmonlar!
         </motion.p>
 
         <motion.h2
           variants={{ hide: { opacity: 0, y: 16, color: '#8FB5A0' }, show: { opacity: 1, y: 0, color: '#1F5A35', transition: { duration: 0.7, ease: EASE } } }}
-          className="mt-[22px] font-script text-[60px] leading-none"
+          className="mt-[22px] font-script text-[63px] leading-none"
         >
           {WEDDING.groom}
         </motion.h2>
 
         <motion.div variants={up} className="flex h-[28px] items-center justify-center gap-3" aria-label="va">
           <span className="h-px w-[120px]" style={{ background: 'linear-gradient(90deg,transparent,#D8C48A)' }} />
-          <span className="font-serif text-[14px] italic text-gold-muted">va</span>
+          <span className="font-serif text-[16px] italic text-[#857858]">va</span>
           <span className="h-px w-[120px]" style={{ background: 'linear-gradient(270deg,transparent,#D8C48A)' }} />
         </motion.div>
 
         <motion.h2
           variants={{ hide: { opacity: 0, y: 16, color: '#8FB5A0' }, show: { opacity: 1, y: 0, color: '#1F5A35', transition: { duration: 0.7, ease: EASE } } }}
-          className="font-script text-[60px] leading-none"
+          className="font-script text-[63px] leading-none"
         >
           {WEDDING.bride}
         </motion.h2>
@@ -97,12 +97,12 @@ export function Names() {
           {img('gold-divider') ? <img src={img('gold-divider')} alt="" decoding="async" draggable="false" /> : <Divider kind="medal" w={95} />}
         </motion.div>
 
-        <motion.p variants={up} className="mx-auto mt-[14px] max-w-[330px] font-serif text-[17px] leading-[1.65] text-ink-body">
+        <motion.p variants={up} className="mx-auto mt-[14px] max-w-[340px] font-serif text-[19px] leading-[1.65] text-[#5E544C]">
           Alloh taoloning izni va marhamati bilan farzandlarimiz{' '}
           <span className="font-semibold text-emerald-ink">{WEDDING.groom}</span> va{' '}
           <span className="font-semibold text-emerald-ink">{WEDDING.bride}</span>ning nikoh to'yi bo'lib o'tadi.
         </motion.p>
-        <motion.p variants={up} className="mx-auto mt-3 max-w-[320px] font-serif text-[17px] italic leading-[1.65] text-ink-quote">
+        <motion.p variants={up} className="mx-auto mt-3 max-w-[340px] font-serif text-[18px] italic leading-[1.65] text-ink-quote">
           Sizni oilangiz bilan ushbu quvonchli kunimizga lutfan taklif etamiz. Tashrifingiz biz uchun katta sharafdir.
         </motion.p>
       </motion.div>
@@ -264,13 +264,13 @@ export function Ayah() {
           <Sparkle size={9} color="#C9A85A" />
           <span className="h-px w-10" style={{ background: 'linear-gradient(270deg,transparent,#D2B672)' }} />
         </motion.div>
-        <motion.p variants={up} dir="rtl" lang="ar" className="mt-4 font-arabic text-[21px] leading-[1.95] text-[#9C7E3C]">
+        <motion.p variants={up} dir="rtl" lang="ar" className="mt-4 font-arabic text-[23px] leading-[1.9] text-[#8E7234]">
           وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
         </motion.p>
-        <motion.p variants={up} className="mt-4 font-serif text-[18px] italic leading-[1.65] text-ink-quote">
+        <motion.p variants={up} className="mt-4 font-serif text-[19px] italic leading-[1.7] text-ink-quote">
           «U zotning belgilaridan biri — sizlar uchun o'zlaringizdan juftlar yaratgani, toki ular bilan orom topgaysiz. Va o'rtalaringizda mehr-muhabbat va rahmat paydo qildi.»
         </motion.p>
-        <motion.p variants={up} className="mt-[16px] font-caps text-[12px] font-medium uppercase tracking-[0.14em] text-[#8A794E]">
+        <motion.p variants={up} className="mt-[16px] font-caps text-[14px] font-medium uppercase tracking-[0.11em] text-[#76663E]">
           Rum surasi · 21-oyat
         </motion.p>
         <motion.div variants={up} className="mt-[14px] flex justify-center" aria-hidden="true">
@@ -303,15 +303,15 @@ export function Hadith() {
           </div>
           <div className="relative px-8 pb-9 pt-10 text-center">
             <Quote />
-            <p className="mx-auto mt-[14px] max-w-[300px] font-serif text-[18px] italic leading-[1.7] text-[#46443F]">
+            <p className="mx-auto mt-[14px] max-w-[310px] font-serif text-[19px] italic leading-[1.7] text-[#3F3D38]">
               Nikoh mening sunnatimdandir. Kim mening sunnatimga amal qilmasa, u mendan emas.
             </p>
             <div className="mt-3 flex items-center justify-center gap-2">
               <span className="h-px w-8" style={{ background: 'linear-gradient(90deg,transparent,#A9C3B2)' }} />
-              <p className="font-caps text-[12px] font-medium uppercase tracking-[0.16em] text-sage-ink">Hadisi sharif</p>
+              <p className="font-caps text-[14px] font-medium uppercase tracking-[0.13em] text-[#4C7360]">Hadisi sharif</p>
               <span className="h-px w-8" style={{ background: 'linear-gradient(270deg,transparent,#A9C3B2)' }} />
             </div>
-            <p className="mt-1 font-serif text-[13px] italic text-gold-muted">Imom Ibn Moja rivoyati</p>
+            <p className="mt-1 font-serif text-[15px] italic text-[#857858]">Imom Ibn Moja rivoyati</p>
             <div className="mt-3">
               <Quote close />
             </div>
@@ -854,13 +854,13 @@ export function Family() {
             viewport={VIEW}
           >
             <motion.div variants={up} className="flex items-center justify-center gap-3">
-              <span className="h-px w-[60px]" style={{ background: 'linear-gradient(90deg,transparent,#D8C48A)' }} />
-              <p className="font-caps text-[12px] font-semibold uppercase tracking-[0.3em] text-[#8A7A4C]">Hurmat bilan</p>
-              <span className="h-px w-[60px]" style={{ background: 'linear-gradient(270deg,transparent,#D8C48A)' }} />
+              <span className="h-px w-[48px] shrink" style={{ background: 'linear-gradient(90deg,transparent,#D8C48A)' }} />
+              <p className="shrink-0 font-caps text-[14px] font-semibold uppercase tracking-[0.22em] text-[#76663E]">Hurmat bilan</p>
+              <span className="h-px w-[48px] shrink" style={{ background: 'linear-gradient(270deg,transparent,#D8C48A)' }} />
             </motion.div>
             <motion.p
               variants={{ hide: { opacity: 0, x: -14 }, show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EASE } } }}
-              className="mx-auto mt-3 max-w-[260px] text-balance font-script text-[44px] leading-[1.1] text-emerald-ink"
+              className="mx-auto mt-3 max-w-[280px] text-balance font-script text-[48px] leading-[1.1] text-emerald-ink"
             >
               {WEDDING.hosts}
             </motion.p>

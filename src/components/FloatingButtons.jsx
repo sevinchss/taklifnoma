@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 import { isPlaying, onMusic, toggleMusic } from '../music'
 
 const SPEED = 40 // px/s
-const R = 21 // progress halqa radiusi
+const R = 23 // progress halqa radiusi
 const C = 2 * Math.PI * R
 
-const ico = { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#2F3A33', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }
+const ico = { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: '#2F3A33', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }
 
 const IconAuto = ({ on }) => (
   <svg {...ico}>
@@ -29,7 +29,7 @@ const IconSound = ({ on }) => (
 )
 
 const btn =
-  'pointer-events-auto relative grid h-10 w-10 place-items-center rounded-full bg-white/95 shadow-[0_4px_14px_rgba(40,30,10,0.18)] ring-1 ring-gold-line/80 transition-transform duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-ink'
+  'pointer-events-auto relative grid h-11 w-11 place-items-center rounded-full bg-white/95 shadow-[0_4px_14px_rgba(40,30,10,0.18)] ring-1 ring-gold-line/80 transition-transform duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-ink'
 
 export default function FloatingButtons() {
   const [auto, setAuto] = useState(false)
@@ -112,8 +112,8 @@ export default function FloatingButtons() {
         aria-label={auto ? "Avto-aylantirishni to'xtatish" : 'Avto-aylantirish'}
         title={auto ? "To'xtatish" : 'Avto-aylantirish'}
       >
-        <svg className="absolute -inset-[3px] h-[46px] w-[46px] -rotate-90" viewBox="0 0 46 46" aria-hidden="true">
-          <circle ref={ring} cx="23" cy="23" r={R} fill="none" stroke="#C9A85A" strokeWidth="1.6" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C} />
+        <svg className="absolute -inset-[3px] h-[50px] w-[50px] -rotate-90" viewBox="0 0 50 50" aria-hidden="true">
+          <circle ref={ring} cx="25" cy="25" r={R} fill="none" stroke="#C9A85A" strokeWidth="1.6" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C} />
         </svg>
         <IconAuto on={auto} />
       </button>

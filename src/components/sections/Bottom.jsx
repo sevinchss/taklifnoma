@@ -20,20 +20,20 @@ function CapsLine({ children, w = 40, className = '', color = '#88784B' }) {
   return (
     <div className={`flex items-center justify-center gap-3 ${className}`}>
       <Hair w={w} />
-      <span className="font-caps text-[12px] font-medium uppercase tracking-[0.3em]" style={{ color, marginRight: '-0.3em' }}>{children}</span>
+      <span className="font-caps text-[13.5px] font-medium uppercase tracking-[0.24em]" style={{ color, marginRight: '-0.24em' }}>{children}</span>
       <Hair w={w} dir="l" />
     </div>
   )
 }
 
-const PinIcon = ({ size = 14, color = '#C9A85A' }) => (
+const PinIcon = ({ size = 16, color = '#B8964A' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" aria-hidden="true">
     <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" />
     <circle cx="12" cy="9.5" r="2.6" />
   </svg>
 )
 const NavIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden="true">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden="true">
     <path d="M21 3 3 10.5l7.5 3L13.5 21 21 3Z" />
   </svg>
 )
@@ -343,9 +343,9 @@ export function Venue() {
         <Card sparkles="dots" innerClassName="overflow-hidden">
           <div className={`relative z-[1] px-6 pt-9 text-center ${corner ? 'min-h-[236px] pb-[104px]' : 'min-h-[214px] pb-[92px]'}`}>
             <CapsLine>To'yxona</CapsLine>
-            <h3 className="mt-[14px] font-serif text-[30px] font-semibold leading-[1.1] text-[#245638] [text-wrap:balance]">
+            <h3 className="mt-[14px] font-serif text-[32px] font-semibold leading-[1.12] text-[#245638] [text-wrap:balance]">
               «{WEDDING.venue}»
-              {WEDDING.venueType && <span className="ml-2 font-serif text-[24px] font-medium italic text-[#3C6B4C]">{WEDDING.venueType}</span>}
+              {WEDDING.venueType && <span className="ml-2 font-serif text-[26px] font-medium italic text-[#3C6B4C]">{WEDDING.venueType}</span>}
             </h3>
             <div className="mt-3 flex items-center justify-center gap-3" aria-hidden="true">
               <Hair w={80} />
@@ -353,16 +353,16 @@ export function Venue() {
               <Hair w={80} dir="l" />
             </div>
             {WEDDING.city && (
-              <p className="mt-3 flex items-center justify-center gap-2 font-serif text-[17px] italic text-[#7A746F]">
+              <p className="mt-3 flex items-center justify-center gap-2 font-serif text-[18px] italic text-[#625C57]">
                 <PinIcon />
                 {WEDDING.city}
               </p>
             )}
             {WEDDING.address &&
               (WEDDING.city ? (
-                <p className="mx-auto mt-1.5 max-w-[250px] font-serif text-[15px] leading-snug text-[#8A8178]">{WEDDING.address}</p>
+                <p className="mx-auto mt-1.5 max-w-[270px] font-serif text-[16.5px] leading-[1.55] text-[#6F665D]">{WEDDING.address}</p>
               ) : (
-                <p className="mx-auto mt-3 max-w-[270px] font-serif text-[17px] italic leading-snug text-[#7A746F]">
+                <p className="mx-auto mt-3 max-w-[290px] font-serif text-[18px] italic leading-[1.55] text-[#625C57]">
                   <span className="mr-2 inline-block align-[-2px]"><PinIcon /></span>
                   {WEDDING.address}
                 </p>
@@ -440,13 +440,13 @@ export function MapCard() {
           target="_blank"
           rel="noreferrer"
           whileTap={{ scale: 0.97 }}
-          className="pill-emerald inline-flex h-11 w-[260px] items-center justify-center gap-2.5 rounded-full font-caps text-[13px] font-semibold uppercase tracking-[0.16em]"
+          className="pill-emerald inline-flex h-12 w-[264px] max-w-full items-center justify-center gap-2.5 rounded-full font-caps text-[15px] font-semibold uppercase tracking-[0.12em]"
         >
           <NavIcon />
           <span>Xaritada ochish</span>
-          <span className="text-[17px] leading-none">›</span>
+          <span className="text-[19px] leading-none">›</span>
         </motion.a>
-        <a href={google} target="_blank" rel="noreferrer" className="mt-3.5 font-serif text-[15px] italic text-[#8A7A4C] underline decoration-[#D8C48A] underline-offset-4">
+        <a href={google} target="_blank" rel="noreferrer" className="mt-1 inline-block py-3 font-serif text-[15.5px] italic text-[#76683F] underline decoration-[#C9B074] underline-offset-4">
           Google Maps orqali ochish
         </a>
       </Reveal>
@@ -466,8 +466,8 @@ function ContactRow({ href, icon, label, value, external }) {
     >
       <span className="icon-sage grid h-11 w-11 shrink-0 place-items-center rounded-full">{icon}</span>
       <span className="min-w-0 flex-1 text-left">
-        <span className="block font-caps text-[11px] font-semibold uppercase tracking-[0.16em] text-[#857340]">{label}</span>
-        <span className="mt-0.5 block font-serif text-[18px] font-semibold text-[#312D26]">{value}</span>
+        <span className="block font-caps text-[13px] font-semibold uppercase tracking-[0.13em] text-[#7A6936]">{label}</span>
+        <span className="mt-0.5 block font-serif text-[19px] font-semibold text-[#312D26]">{value}</span>
       </span>
       <span className="contact-chev text-[#C9B074]"><Chevron /></span>
     </a>
@@ -483,8 +483,8 @@ export function Contacts() {
       <div className="gutter text-center">
         <Reveal>
           <Divider kind="moon" />
-          <p className="mt-3 font-caps text-[12px] font-semibold uppercase tracking-[0.3em] text-[#877341]" style={{ marginRight: '-0.3em' }}>Ma'lumot uchun</p>
-          <p className="mt-2.5 font-serif text-[17px] italic text-[#706456]">Savollaringiz bo'lsa, biz bilan bog'laning</p>
+          <p className="mt-3 font-caps text-[13.5px] font-semibold uppercase tracking-[0.24em] text-[#7A6936]" style={{ marginRight: '-0.24em' }}>Ma'lumot uchun</p>
+          <p className="mt-2.5 font-serif text-[18.5px] italic leading-[1.6] text-[#5F5447]">Savollaringiz bo'lsa, biz bilan bog'laning</p>
         </Reveal>
         <motion.div
           className="relative z-0 mx-auto -mb-4 mt-5 h-[230px] w-[268px]"
@@ -534,7 +534,7 @@ export function Toyona() {
       <Reveal>
         <h2 className="font-serif text-[22px] font-medium uppercase tracking-[0.25em] text-[#5B5140]" style={{ marginRight: '-0.25em' }}>To'yona</h2>
         <Divider kind="medal" w={120} className="mt-3" />
-        <p className="mx-auto mt-4 max-w-[330px] font-serif text-[17px] italic leading-[1.55] text-[#6D6057]">
+        <p className="mx-auto mt-4 max-w-[340px] font-serif text-[18.5px] italic leading-[1.65] text-[#5F534B]">
           Qalban to'yona atamoqchi bo'lsangiz, quyidagi karta raqamidan foydalanishingiz mumkin
         </p>
       </Reveal>
@@ -551,7 +551,7 @@ export function Toyona() {
           <span className="bank-sheen" />
           <div className="relative flex h-full flex-col px-6 pb-5 pt-[26px]">
             <div className="flex items-start justify-between">
-              <span className="font-caps text-[12px] font-normal uppercase tracking-[0.22em] text-[#DCE3D2]/85">To'yona kartasi</span>
+              <span className="font-caps text-[13px] font-normal uppercase tracking-[0.18em] text-[#DCE3D2]/95">To'yona kartasi</span>
               <span className="chip relative h-[26px] w-[34px] rounded-[5px]" aria-hidden="true">
                 <span className="absolute inset-x-0 top-1/2 h-px bg-[#8a7330]/50" />
                 <span className="absolute inset-y-0 left-1/3 w-px bg-[#8a7330]/50" />
@@ -563,12 +563,12 @@ export function Toyona() {
               <div className="min-w-0">
                 {WEDDING.cardHolder && (
                   <>
-                    <p className="font-caps text-[9px] uppercase tracking-[0.2em] text-[#9FB5A2]">Karta egasi</p>
-                    <p className="mt-0.5 truncate font-sans text-[15px] font-medium tracking-[0.04em] text-[#F5F1E3]">{WEDDING.cardHolder}</p>
+                    <p className="font-caps text-[13px] uppercase tracking-[0.14em] text-[#B4C7B6]">Karta egasi</p>
+                    <p className="mt-0.5 truncate font-sans text-[16px] font-medium tracking-[0.04em] text-[#F5F1E3]">{WEDDING.cardHolder}</p>
                   </>
                 )}
               </div>
-              {scheme && <span className="font-caps text-[12px] font-semibold tracking-[0.18em] text-[#E0CF95]/90">{scheme}</span>}
+              {scheme && <span className="font-caps text-[13px] font-semibold tracking-[0.15em] text-[#E0CF95]">{scheme}</span>}
             </div>
           </div>
         </div>
@@ -584,7 +584,7 @@ export function Toyona() {
           type="button"
           onClick={copy}
           whileTap={{ scale: 0.97 }}
-          className={`copy-pill relative mx-auto inline-flex h-11 w-[236px] items-center justify-center gap-2 rounded-full font-sans text-[15px] font-semibold text-[#2B5A3C] ${done ? 'is-done' : ''}`}
+          className={`copy-pill relative mx-auto inline-flex h-12 w-[256px] max-w-full items-center justify-center gap-2 rounded-full font-sans text-[16px] font-semibold text-[#2B5A3C] ${done ? 'is-done' : ''}`}
           aria-live="polite"
         >
           <span className="absolute left-4 top-1/2 -translate-y-1/2"><Medal /></span>
@@ -622,7 +622,7 @@ export function Toyona() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}
             transition={{ duration: 0.25, ease: EASE }}
-            className="fixed bottom-6 left-1/2 z-[70] -ml-[130px] w-[260px] rounded-full bg-[#1F5A35] px-5 py-3 text-center font-sans text-[14px] font-medium text-[#F5F1E3] shadow-[0_10px_30px_rgba(18,42,28,.35)]"
+            className="fixed bottom-6 left-1/2 z-[70] -ml-[140px] w-[280px] rounded-full bg-[#1F5A35] px-5 py-3 text-center font-sans text-[15px] font-medium text-[#F5F1E3] shadow-[0_10px_30px_rgba(18,42,28,.35)]"
           >
             Karta raqami nusxalandi ✓
           </motion.div>
@@ -747,14 +747,14 @@ function Lightbox({ list, index, onClose, onStep }) {
           <img src={list[index]} alt="" className="!aspect-auto max-h-[78vh] w-auto max-w-[84vw] object-contain" draggable="false" />
         </motion.div>
       </AnimatePresence>
-      <button type="button" onClick={onClose} aria-label="Yopish" className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-[#D8C48A]/60 text-[#F5F1E3]" style={{ marginTop: 'env(safe-area-inset-top)' }}>
+      <button type="button" onClick={onClose} aria-label="Yopish" className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full border border-[#D8C48A]/60 text-[#F5F1E3]" style={{ marginTop: 'env(safe-area-inset-top)' }}>
         <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
       </button>
       {many && (
         <div className="absolute inset-x-0 bottom-6 flex items-center justify-center gap-5 text-[#F5F1E3]" onClick={(e) => e.stopPropagation()}>
-          <button type="button" onClick={() => onStep(-1)} aria-label="Oldingi" className="grid h-10 w-10 place-items-center rounded-full border border-[#D8C48A]/50"><span className="rotate-180"><Chevron /></span></button>
-          <span className="font-caps text-[12px] tracking-[0.2em] text-[#E6CF8E]">{index + 1} / {list.length}</span>
-          <button type="button" onClick={() => onStep(1)} aria-label="Keyingi" className="grid h-10 w-10 place-items-center rounded-full border border-[#D8C48A]/50"><Chevron /></button>
+          <button type="button" onClick={() => onStep(-1)} aria-label="Oldingi" className="grid h-11 w-11 place-items-center rounded-full border border-[#D8C48A]/50"><span className="rotate-180"><Chevron /></span></button>
+          <span className="font-caps text-[14px] tracking-[0.16em] text-[#E6CF8E]">{index + 1} / {list.length}</span>
+          <button type="button" onClick={() => onStep(1)} aria-label="Keyingi" className="grid h-11 w-11 place-items-center rounded-full border border-[#D8C48A]/50"><Chevron /></button>
         </div>
       )}
     </motion.div>
@@ -777,7 +777,7 @@ export function Memories() {
     <section className="relative overflow-hidden pb-14 pt-12 text-center" style={{ background: '#F6F3EA' }}>
       <Reveal>
         <Sparkle size={10} color="#C9A85A" className="mx-auto" />
-        <h2 className="script mt-[14px] text-[42px]">Xotira lavhalari</h2>
+        <h2 className="script mt-[14px] text-[45px]">Xotira lavhalari</h2>
         <span className="mx-auto mt-[14px] block h-px w-[90px]" style={{ background: 'linear-gradient(90deg,transparent,#D8C48A,transparent)' }} />
       </Reveal>
       <div className="gutter mt-9">
@@ -845,16 +845,16 @@ export function Footer() {
       <div className="relative mx-auto max-w-[360px] px-6">
         <Reveal>
           <div className="glow mx-auto w-fit"><CrescentStar size={46} /></div>
-          <p dir="rtl" lang="ar" className="gold-text mt-6 font-arabic text-[20px] leading-[1.9] [text-wrap:balance]">
+          <p dir="rtl" lang="ar" className="gold-text mt-6 font-arabic text-[22px] leading-[1.9] [text-wrap:balance]">
             بَارَكَ ٱللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
           </p>
-          <p className="mt-3 font-serif text-[17px] italic leading-[1.55] text-[#E9E2CC]/85">
+          <p className="mt-3 font-serif text-[18.5px] italic leading-[1.65] text-[#EEE8D4]/95">
             «Alloh sizlarga baraka bersin, ustingizga baraka yog'dirsin va ikkingizni yaxshilikda jamlasin»
           </p>
         </Reveal>
         <Reveal delay={0.1} className="mt-10">
           <CapsLine color="#D8C48A" w={46}>Hurmat bilan</CapsLine>
-          <p className="script mt-3 text-[40px] leading-[1.15]" style={{ color: '#E6CF8E' }}>{WEDDING.hosts}</p>
+          <p className="script mt-3 text-[42px] leading-[1.15]" style={{ color: '#E6CF8E' }}>{WEDDING.hosts}</p>
         </Reveal>
         <Reveal delay={0.18} className="mt-9">
           <div className="flex items-center justify-center gap-3">
@@ -862,7 +862,7 @@ export function Footer() {
             <Star8 size={12} color="#C9A85A" />
             <Hair w={54} dir="l" />
           </div>
-          <p className="mt-4 font-serif text-[15px] font-medium uppercase tracking-[0.26em] text-[#E9E2CC]/80" style={{ marginRight: '-0.26em' }}>
+          <p className="mt-4 font-serif text-[15px] font-medium uppercase tracking-[0.18em] text-[#EEE8D4]/95 [text-wrap:balance]" style={{ marginRight: '-0.18em' }}>
             {WEDDING.groom} <span className="text-[#C9A85A]">&</span> {WEDDING.bride}
           </p>
           <p className="mt-2 font-serif text-[22px] font-medium tracking-[0.18em] text-[#E6CF8E] [font-variant-numeric:lining-nums]" style={{ marginRight: '-0.18em' }}>{dateLine}</p>

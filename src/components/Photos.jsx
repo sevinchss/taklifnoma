@@ -95,9 +95,9 @@ export default function Photos() {
     <section id="rasmlar" className="relative scroll-mt-4 overflow-hidden px-5 pb-16 pt-12" style={{ background: 'linear-gradient(180deg,#F3F1EA,#EEEADC)' }}>
       <Reveal className="text-center">
         <Divider kind="moon" />
-        <p className="mt-3 font-caps text-[12px] font-semibold uppercase tracking-[0.3em] text-[#877341]" style={{ marginRight: '-0.3em' }}>To'y kuni uchun</p>
-        <h2 className="script mt-2 text-[40px] leading-[1.15]">To'y rasmlarini yuklang</h2>
-        <p className="mx-auto mt-3 max-w-[320px] font-serif text-[17px] italic leading-[1.55] text-[#6D6057]">
+        <p className="mt-3 font-caps text-[13.5px] font-semibold uppercase tracking-[0.24em] text-[#7A6936]" style={{ marginRight: '-0.24em' }}>To'y kuni uchun</p>
+        <h2 className="script mt-2 text-[43px] leading-[1.15]">To'y rasmlarini yuklang</h2>
+        <p className="mx-auto mt-3 max-w-[340px] font-serif text-[18.5px] italic leading-[1.65] text-[#5F534B]">
           To'yda kelin-kuyovni suratga oldingizmi? Shu yerga yuklang — rasmlar to'g'ri to'y egasiga boradi.
         </p>
       </Reveal>
@@ -111,7 +111,7 @@ export default function Photos() {
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[#E6CF8E]" style={{ background: 'linear-gradient(135deg,#2F7344,#1F5A35)' }}>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
                 </span>
-                <p className="text-left font-sans text-[13px] leading-snug text-[#3F5E49]">
+                <p className="text-left font-sans text-[14.5px] leading-[1.5] text-[#34503E]">
                   <b className="font-semibold text-[#1F5A35]">Maxfiy.</b> Rasmlarni faqat to'y egasi ko'radi — boshqa mehmonlarga ko'rinmaydi.
                 </p>
               </div>
@@ -123,9 +123,9 @@ export default function Photos() {
                       <Star8 size={80} className="spin-slow absolute inset-0" color="rgba(201,168,90,.28)" />
                       <span className="relative font-serif text-[32px] font-semibold text-[#1F5A35] [font-variant-numeric:lining-nums]">{done}</span>
                     </div>
-                    <h3 className="script mt-4 text-[38px]">Rahmat!</h3>
-                    <p className="mt-1 font-serif text-[17px] italic text-[#6D6057]">{done} ta rasm to'y egasiga yuborildi.</p>
-                    <motion.button whileTap={{ scale: 0.97 }} onClick={() => ref.current.click()} className="copy-pill mt-6 inline-flex h-11 items-center rounded-full px-7 font-sans text-[15px] font-semibold text-[#2B5A3C]">
+                    <h3 className="script mt-4 text-[41px]">Rahmat!</h3>
+                    <p className="mt-1 font-serif text-[18.5px] italic leading-[1.6] text-[#5F534B]">{done} ta rasm to'y egasiga yuborildi.</p>
+                    <motion.button whileTap={{ scale: 0.97 }} onClick={() => ref.current.click()} className="copy-pill mt-6 inline-flex h-12 items-center rounded-full px-8 font-sans text-[16px] font-semibold text-[#2B5A3C]">
                       Yana yuklash
                     </motion.button>
                   </motion.div>
@@ -148,8 +148,8 @@ export default function Photos() {
                       >
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
                       </span>
-                      <span className="mt-4 font-serif text-[22px] font-semibold text-[#1F5A35]">Rasmlarni tanlang</span>
-                      <span className="mt-1 font-sans text-[12.5px] text-[#8A8178]">Galereyadan yoki kameradan · 30 tagacha</span>
+                      <span className="mt-4 font-serif text-[23.5px] font-semibold text-[#1F5A35]">Rasmlarni tanlang</span>
+                      <span className="mt-1.5 font-sans text-[14.5px] leading-snug text-[#6F665D] [text-wrap:balance]">Galereyadan yoki kameradan · 30 tagacha</span>
                     </button>
 
                     {items.length > 0 && (
@@ -165,8 +165,8 @@ export default function Photos() {
                             >
                               <img src={it.url} alt="" className="h-full w-full rounded-[7px] object-cover" />
                               {!busy && (
-                                <button onClick={() => remove(i)} className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-full bg-[#122A1C]/70 text-white" aria-label="O'chirish">
-                                  <svg width="11" height="11" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                                <button onClick={() => remove(i)} className="absolute right-1 top-1 grid h-7 w-7 place-items-center rounded-full bg-[#122A1C]/75 text-white after:absolute after:-inset-2 after:content-['']" aria-label="O'chirish">
+                                  <svg width="12" height="12" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M6 6l12 12M18 6L6 18" /></svg>
                                 </button>
                               )}
                             </motion.div>
@@ -194,7 +194,7 @@ export default function Photos() {
                   </motion.div>
                 )}
               </AnimatePresence>
-              {err && <p className="mt-3 rounded-[12px] border border-dashed border-[#D9A99A] bg-[#FBF1EC] px-3.5 py-2.5 text-center font-sans text-[14px] text-[#9A4B3A]" role="alert">{err}</p>}
+              {err && <p className="mt-3 rounded-[12px] border border-dashed border-[#D9A99A] bg-[#FBF1EC] px-3.5 py-2.5 text-center font-sans text-[15px] leading-snug text-[#8E4130]" role="alert">{err}</p>}
               <input ref={ref} type="file" accept="image/*" multiple hidden onChange={(e) => (add(e.target.files), (e.target.value = ''))} />
             </div>
           </div>

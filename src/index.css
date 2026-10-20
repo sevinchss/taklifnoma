@@ -49,6 +49,8 @@
 }
 
 html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
@@ -89,8 +91,8 @@ img { max-width: 100%; }
 
 /* ---------- tipografiya ---------- */
 .script { font-family: var(--font-script); font-weight: 400; color: var(--color-emerald-ink); line-height: 1.15; }
-.caps { font-family: var(--font-caps); font-weight: 500; text-transform: uppercase; letter-spacing: 0.28em; }
-.serif-caps { font-family: var(--font-serif); font-weight: 500; text-transform: uppercase; letter-spacing: 0.24em; }
+.caps { font-family: var(--font-caps); font-weight: 500; text-transform: uppercase; letter-spacing: 0.22em; }
+.serif-caps { font-family: var(--font-serif); font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; }
 .oldnum { font-variant-numeric: oldstyle-nums; }
 .gold-text {
   background: linear-gradient(100deg, #c4a152 0%, #e6cf8e 40%, #c4a152 60%, #f3e2ad 80%, #c4a152 100%);

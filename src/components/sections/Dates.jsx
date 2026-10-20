@@ -282,7 +282,7 @@ export function Calendar() {
         <div ref={cardRef}>
           <Card innerClassName="overflow-visible">
             <FloralTop />
-            <div className={`relative px-4 pb-7 pt-[118px] ${mode === 'run' ? 'cal-run' : mode === 'static' ? 'cal-static' : ''}`} style={{ '--sel-d': mode === 'static' ? '0ms' : selDelay }}>
+            <div className={`relative px-3 pb-7 pt-[118px] ${mode === 'run' ? 'cal-run' : mode === 'static' ? 'cal-static' : ''}`} style={{ '--sel-d': mode === 'static' ? '0ms' : selDelay }}>
               {/* oy sarlavhasi */}
               <div className="flex items-center justify-center gap-3">
                 <span className="h-px w-[18px] bg-gradient-to-r from-transparent to-[#D8C48A]" />
@@ -293,10 +293,10 @@ export function Calendar() {
               </div>
 
               {/* hafta kunlari */}
-              <div className="mx-auto mt-4 w-[329px] max-w-full border-y border-[#E6DCC0]">
+              <div className="mx-auto mt-4 w-[calc(var(--cw)*7)] max-w-full border-y border-[#E6DCC0]">
                 <div className="cal-grid" style={{ gridAutoRows: '34px' }}>
                   {WK.map((w, i) => (
-                    <div key={w} className="cal-wk grid place-items-center" style={{ color: i > 4 ? '#315640' : '#8C7B4E' }}>{w}</div>
+                    <div key={w} className="cal-wk grid place-items-center" style={{ color: i > 4 ? '#2C5039' : '#74643A' }}>{w}</div>
                   ))}
                 </div>
               </div>
@@ -323,14 +323,14 @@ export function Calendar() {
                 })}
               </div>
 
-              <div className="mx-auto mt-2 w-[329px] max-w-full border-t border-dashed border-[#E3D9BE]" />
+              <div className="mx-auto mt-2 w-[calc(var(--cw)*7)] max-w-full border-t border-dashed border-[#E3D9BE]" />
 
-              <div className="mt-4 flex items-center justify-center gap-2.5 font-serif text-[15px] font-semibold uppercase tracking-[0.12em] text-[#5B5140]">
+              <div className="mt-4 flex items-center justify-center gap-2.5 font-serif text-[15px] font-semibold uppercase tracking-[0.1em] text-[#463E31]">
                 <Medal />
-                <span className="oldnum pl-[0.12em]">{P.weekday} · {P.d}-{month}</span>
+                <span className="oldnum pl-[0.1em]">{P.weekday} · {P.d}-{month}</span>
                 <Medal />
               </div>
-              <p className="mt-3 text-center font-serif text-[14px] font-medium uppercase tracking-[0.24em] text-[#A8904F]">Soat</p>
+              <p className="mt-3 text-center font-serif text-[14px] font-semibold uppercase tracking-[0.19em] text-[#87702F]">Soat</p>
               <div className="mt-2 flex items-center justify-center gap-4">
                 <span className="h-px w-[50px] bg-gradient-to-r from-transparent to-[#D8C48A]" />
                 <span className="cal-time">{P.time}</span>
@@ -511,7 +511,7 @@ export function Countdown() {
   const t = useCountdown(target)
   const sky = img('countdown-sky')
   const mosque = img('mosque-silhouette')
-  const dayW = Math.max(64, String(t.d).length * 19 + 26)
+  const dayW = Math.max(64, String(t.d).length * 21 + 26)
 
   return (
     <section id="taymer" className={`relative isolate overflow-hidden ${sky ? 'cd-has-sky' : ''}`} style={{ minHeight: 430 }} aria-label="To'ygacha qolgan vaqt">
@@ -540,7 +540,7 @@ export function Countdown() {
       <div className="relative flex flex-col items-center px-4 pb-[150px] pt-8 text-center">
         <Flare />
         <Reveal y={10} className="mt-5">
-          <h2 className="cd-title pl-[0.3em]">TO'YGACHA QOLGAN VAQT</h2>
+          <h2 className="cd-title pl-[0.17em]">TO'YGACHA QOLGAN VAQT</h2>
         </Reveal>
 
         {t.done ? (
@@ -548,10 +548,10 @@ export function Countdown() {
             <p className="script gold-text text-[54px] leading-tight" style={{ filter: 'drop-shadow(0 2px 10px rgba(0,0,0,.5))' }}>Muborak bo'lsin!</p>
           </Reveal>
         ) : (
-          <div className="mt-6 flex items-center justify-center gap-[9px]" role="timer" aria-live="off">
+          <div className="mt-6 flex items-center justify-center gap-[6px]" role="timer" aria-live="off">
             {UNITS.map(([k, l], i) => (
-              <div key={k} className="flex items-center gap-[9px]">
-                {i > 0 && <Sparkle size={8} color="#D8C48A" className="shrink-0 opacity-90" />}
+              <div key={k} className="flex items-center gap-[6px]">
+                {i > 0 && <Sparkle size={7} color="#D8C48A" className="shrink-0 opacity-90" />}
                 <Tile value={k === 'd' ? t.d : t[k]} label={l} i={i} wide={k === 'd' ? dayW : 64} />
               </div>
             ))}

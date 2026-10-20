@@ -219,7 +219,7 @@
 
 .gate-bism {
   font-family: var(--font-arabic);
-  font-size: 25px;
+  font-size: 27.5px;
   line-height: 1.6;
   color: #ecdfb4;
   text-shadow: 0 1px 10px rgba(10, 30, 18, 0.45);
@@ -228,15 +228,15 @@
 .gate-dear {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: 13px;
-  letter-spacing: 0.38em;
-  padding-left: 0.38em;
-  color: #efe6cc;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  color: #f3ead2;
   margin-top: 4px;
 }
 .gate-guest {
   font-family: var(--font-script);
-  font-size: 56px;
+  font-size: 58px;
   line-height: 1.2;
   margin-top: -2px;
   padding: 0 8px;
@@ -264,8 +264,8 @@
   color: #f3ecd7;
   font-family: var(--font-caps);
   font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.24em;
+  font-size: 15px;
+  letter-spacing: 0.19em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -313,20 +313,20 @@
 .gate-photo .gate-content { justify-content: space-between; padding-top: calc(16px + env(safe-area-inset-top)); }
 .gate-photo .gate-text { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 4vh; }
 .gate-photo .gate-bism {
-  font-size: 27px;
-  color: #e9d49a;
+  font-size: 29.5px;
+  color: #ecd8a0;
   text-shadow: 0 0 18px rgba(233, 205, 130, 0.28), 0 2px 6px rgba(4, 18, 9, 0.6);
 }
 .gate-photo .gate-dear {
   margin-top: 14px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.46em;
-  padding-left: 0.46em;
-  color: #eedfb3;
+  letter-spacing: 0.36em;
+  padding-left: 0.36em;
+  color: #f2e5bd;
   text-shadow: 0 1px 6px rgba(4, 18, 9, 0.7);
 }
-.gate-photo .gate-guest { font-size: 64px; line-height: 1.15; margin-top: 2px; }
+.gate-photo .gate-guest { font-size: 66px; line-height: 1.15; margin-top: 2px; }
 .gate-photo .gate-guest span {
   background-image: linear-gradient(100deg, #b8923f 0%, #e3c675 28%, #fff3cc 50%, #e3c675 72%, #b8923f 100%);
 }
@@ -342,8 +342,8 @@
   color: #f2e2b4;
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 0.22em;
+  font-size: 16.5px;
+  letter-spacing: 0.17em;
 }
 .is-arming .gate-btn { transform: scale(0.98); transition: transform 0.12s; }
 

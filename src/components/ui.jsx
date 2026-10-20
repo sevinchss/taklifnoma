@@ -93,12 +93,12 @@ export function Divider({ kind = 'moon', className = '', w = 110 }) {
 
 // Kichik bosh harfli sarlavha: "TO'YXONA", "HADISI SHARIF"
 export function Eyebrow({ children, className = '' }) {
-  return <p className={`caps text-[11px] text-gold-ink ${className}`}>{children}</p>
+  return <p className={`caps text-[13px] text-gold-ink ${className}`}>{children}</p>
 }
 
 // Yozma (script) sarlavha: "Mehmonimiz", "Xotira lavhalari"
 export function ScriptTitle({ children, className = '', as: Tag = 'h2' }) {
-  return <Tag className={`script text-[44px] ${className}`}>{children}</Tag>
+  return <Tag className={`script text-[48px] ${className}`}>{children}</Tag>
 }
 
 // Rasm joyi: rasm bo'lsa — rasm, bo'lmasa — fallback (chizilgan bezak)

@@ -119,19 +119,19 @@
 /* ---------- rasm yuklash (Photos.jsx) ---------- */
 .field {
   width: 100%;
-  height: 50px;
+  height: 52px;
   border-radius: 12px;
   background: #fbf8f0;
   border: 1px solid #e2d8bf;
   padding: 0 16px;
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: 17px;
+  font-size: 18px;
   color: #3a3328;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
-.field::placeholder { font-style: italic; color: #9c9286; font-weight: 400; }
+.field::placeholder { font-style: italic; color: #857b70; font-weight: 400; }
 .field:focus { border-color: #c9a85a; background: #fffdf8; box-shadow: 0 0 0 4px rgba(201, 168, 90, 0.14); }
 
 .btn-sage {

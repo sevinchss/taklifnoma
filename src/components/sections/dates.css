@@ -13,16 +13,18 @@
 @keyframes cal-sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(0.8deg); } }
 @keyframes cal-sway-r { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-0.8deg); } }
 
-.cal-head { font-family: var(--font-serif); font-weight: 600; font-size: 20px; letter-spacing: 0.18em; color: #1f5a35; }
-.cal-wk { font-family: var(--font-caps); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; }
-.cal-grid { display: grid; grid-template-columns: repeat(7, 47px); grid-auto-rows: 44px; justify-content: center; }
-.cal-day { position: relative; display: grid; place-items: center; font-family: var(--font-serif); font-weight: 500; font-size: 17px; color: #3a3328; font-variant-numeric: oldstyle-nums; }
+/* ustun kengligi: 47px gacha, tor ekranda (360px) karta ichiga sig'adi; pufakcha ustundan 3px kichik */
+#sana { --cw: min(47px, calc((100vw - 80px) / 7)); --cb: min(42px, calc(var(--cw) - 3px)); }
+.cal-head { font-family: var(--font-serif); font-weight: 600; font-size: 22px; letter-spacing: 0.16em; color: #1f5a35; }
+.cal-wk { font-family: var(--font-caps); font-weight: 600; font-size: 13.5px; letter-spacing: 0.05em; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, var(--cw)); grid-auto-rows: 44px; justify-content: center; }
+.cal-day { position: relative; display: grid; place-items: center; font-family: var(--font-serif); font-weight: 500; font-size: 19px; color: #2f291f; font-variant-numeric: oldstyle-nums; }
 .cal-day.out { color: #c9c6bd; }
 .cal-day .n { position: relative; z-index: 2; line-height: 1; }
 
 /* pufakcha: oltin to'lqin */
 .cal-bub {
-  position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 999px;
+  position: absolute; left: 50%; top: 50%; width: var(--cb); height: var(--cb); margin: calc(var(--cb) / -2) 0 0 calc(var(--cb) / -2); border-radius: 999px;
   background: radial-gradient(circle at 42% 36%, #f7f0dc, #ecdfbb 70%, #e4d3a6);
   opacity: 0; transform: scale(0.6); z-index: 1; will-change: transform, opacity;
 }
@@ -43,11 +45,11 @@
 .cal-static .cal-bub { opacity: 0.5; transform: scale(0.94); }
 
 /* tanlangan kun — zumrad */
-.cal-sel { position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; z-index: 1; opacity: 0; transform: scale(1.35); }
+.cal-sel { position: absolute; left: 50%; top: 50%; width: var(--cb); height: var(--cb); margin: calc(var(--cb) / -2) 0 0 calc(var(--cb) / -2); z-index: 1; opacity: 0; transform: scale(1.35); }
 .cal-sel .disc {
   position: absolute; inset: 0; border-radius: 999px;
   background: radial-gradient(circle at 40% 35%, #3d8a5a, #1f5a35 62%, #174a2b);
-  box-shadow: 0 0 0 2px #fffdf4, 0 0 0 3.5px #d8c48a, 0 0 0 9px rgba(216, 196, 138, 0.22), 0 8px 18px rgba(29, 82, 51, 0.38);
+  box-shadow: 0 0 0 2px #fffdf4, 0 0 0 3.5px #d8c48a, 0 0 0 6px rgba(216, 196, 138, 0.24), 0 8px 18px rgba(29, 82, 51, 0.38);
 }
 .cal-sel .halo { position: absolute; inset: -6px; border-radius: 999px; border: 1px solid #d8c48a; opacity: 0; }
 .cal-sel .spk { position: absolute; right: -7px; top: -8px; opacity: 0; transform: scale(0.2) rotate(-40deg); }
@@ -65,7 +67,7 @@
 @keyframes cal-spk { from { opacity: 0; transform: scale(0.2) rotate(-40deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
 @keyframes cal-tw { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(0.7) rotate(25deg); } }
 
-.cal-time { font-family: var(--font-serif); font-weight: 600; font-size: 46px; line-height: 1; color: #1f5a35; font-variant-numeric: lining-nums; letter-spacing: 0.01em; }
+.cal-time { font-family: var(--font-serif); font-weight: 600; font-size: 48px; line-height: 1; color: #1f5a35; font-variant-numeric: lining-nums; letter-spacing: 0.01em; }
 
 /* ================= Taymer (§7) ================= */
 .cd-sky {
@@ -91,7 +93,7 @@
 .cd-flare { animation: cd-flare 4s ease-in-out infinite; }
 @keyframes cd-flare { 0%, 100% { opacity: 0.75; transform: scale(0.92) rotate(0deg); } 50% { opacity: 1; transform: scale(1.06) rotate(6deg); } }
 
-.cd-title { font-family: var(--font-serif); font-weight: 500; font-size: 17px; letter-spacing: 0.3em; color: #ead6a0; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55), 0 0 18px rgba(201, 168, 90, 0.25); }
+.cd-title { font-family: var(--font-serif); font-weight: 600; font-size: 17px; letter-spacing: 0.17em; white-space: nowrap; color: #ead6a0; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55), 0 0 18px rgba(201, 168, 90, 0.25); }
 
 .cd-tile {
   position: relative; overflow: hidden; height: 92px; border-radius: 12px;
@@ -113,8 +115,8 @@
   transform: translateX(-160%) skewX(-12deg); animation: cd-sheen 8s ease-in-out infinite; animation-delay: var(--sd, 0s);
 }
 @keyframes cd-sheen { 0%, 78% { transform: translateX(-160%) skewX(-12deg); } 92%, 100% { transform: translateX(330%) skewX(-12deg); } }
-.cd-num { position: relative; height: 40px; overflow: hidden; font-family: var(--font-serif); font-weight: 600; font-size: 34px; line-height: 40px; color: #f7f2e2; font-variant-numeric: oldstyle-nums tabular-nums; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); }
-.cd-lab { margin-top: 4px; font-family: var(--font-caps); font-weight: 500; font-size: 9.5px; letter-spacing: 0.18em; color: #e8e1cc; padding-left: 0.18em; }
+.cd-num { position: relative; height: 44px; overflow: hidden; font-family: var(--font-serif); font-weight: 600; font-size: 37px; line-height: 44px; color: #f7f2e2; font-variant-numeric: oldstyle-nums tabular-nums; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); }
+.cd-lab { margin-top: 3px; font-family: var(--font-caps); font-weight: 500; font-size: 12px; letter-spacing: 0.07em; color: #f4eedc; padding-left: 0.07em; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45); }
 
 @media (prefers-reduced-motion: reduce) {
   .cal-floral .corner, .cd-cloud, .cd-star, .cd-flare, .cd-tile::after, .cal-sel .halo { animation: none !important; }
