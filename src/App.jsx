@@ -5,7 +5,7 @@ import FloatingButtons from './components/FloatingButtons'
 import Hero from './components/Hero'
 import { Names, Ayah, Hadith, NightScene, Family } from './components/sections/Top'
 import { Calendar, Countdown } from './components/sections/Dates'
-import { Venue, MapCard, Contacts, Toyona, Table, Memories, Footer } from './components/sections/Bottom'
+import { Contacts, Toyona, Table, Memories, Footer } from './components/sections/Bottom'
 import Photos from './components/Photos'
 import Host from './components/Host'
 
@@ -21,7 +21,7 @@ function useRoute() {
 
 // Sahifa tartibi videodagidek:
 // darvoza → eshik → hero → ismlar → oyat → kalendar → taymer → hadis → tungi masjid →
-// to'yxona → xarita → ma'lumot uchun → to'yona → hurmat bilan → stol → xotira lavhalari → suratlar → pastki qism
+// ma'lumot uchun → to'yona → hurmat bilan → stol → xotira lavhalari → suratlar → pastki qism
 export default function App() {
   const route = useRoute()
   // QR koddan to'g'ridan-to'g'ri /#rasmlar yoki /#javob ochilsa, kirishni o'tkazib yuboramiz
@@ -50,8 +50,6 @@ export default function App() {
         <Countdown />
         <Hadith />
         <NightScene />
-        <Venue />
-        <MapCard />
         <Contacts />
         <Toyona />
         <Family />
